@@ -57,6 +57,7 @@ def train(num_epochs, cnn, loaders, device):
         
     # Train the model
     total_step = len(loaders['train'])
+    losses = []
         
     for epoch in range(num_epochs):
         for i, (images, labels) in enumerate(loaders['train']):
@@ -73,13 +74,16 @@ def train(num_epochs, cnn, loaders, device):
             optimizer.zero_grad()           
             
             # backpropagation, compute gradients 
-            loss.backward()    
+            loss.backward()
             # apply gradients             
-            optimizer.step()                
+            optimizer.step()
+            losses.append(loss.item())                
             
             if (i+1) % 100 == 0:
                 print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}' 
                        .format(epoch + 1, num_epochs, i + 1, total_step, loss.item()))
+            
+    return losses
 
 def test(loaders, label, device):
     # Test the model
@@ -96,9 +100,13 @@ def test(loaders, label, device):
             total += labels.size(0)
         accuracy = correct / float(total) 
         print('Test Accuracy of the model on the 10000 test images: %.4f' % accuracy)
+        return accuracy
 
-cnn = CNN(num_layers=2, num_recurrence=1, num_channels=8).to(device)
-loaders = get_dataloaders()
-train(10, cnn, loaders, device)
-test(loaders, 'test', device)
-test(loaders, 'test_data_noisy', device)
+for num_layers in range(2, 5):
+    for num_recurrence in range(3):
+        for num_channels in [8, 16, 24]:
+            cnn = CNN(num_layers=num_layers, num_recurrence=num_recurrence, num_channels=num_channels).to(device)
+            loaders = get_dataloaders()
+            loss = train(10, cnn, loaders, device)
+            test_acc = test(loaders, 'test', device)
+            noisy_test_acc = test(loaders, 'test_data_noisy', device)
