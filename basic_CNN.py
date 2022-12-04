@@ -20,14 +20,14 @@ class CNN(nn.Module):
         self.conv = nn.Sequential(
             *[
                 nn.Sequential(
-                    nn.Conv2d(8, 8, kernel_size, 1, padding),
+                    nn.Conv2d(num_channels, num_channels, kernel_size, 1, padding),
                     nn.ReLU(),
                 )
             ]
             * num_layers
         )
         # fully connected layer, output 10 classes
-        self.out = nn.Linear(8 * 14 * 14, 10)
+        self.out = nn.Linear(num_channels * 14 * 14, 10)
 
     def forward(self, x):
         x = self.conv1(x)
