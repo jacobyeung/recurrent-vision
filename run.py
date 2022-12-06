@@ -170,31 +170,34 @@ def test(cnn, loaders, label, device):
         print("Test Accuracy of the model on the 10000 test images: %.4f" % accuracy)
         return accuracy
 
+def main():
+    for num_layers in range(2, 5):
+        for num_recurrence in range(3):
+            for num_channels in [8, 16, 24]:
+                cnn = CNN(
+                    num_layers=num_layers,
+                    num_recurrence=num_recurrence,
+                    num_channels=num_channels,
+                ).to(device)
+                loaders = get_dataloaders()
+                loss = train(3, cnn, loaders, device)
+                test_acc = test(cnn, loaders, "test", device)
+                noisy_test_acc = test(cnn, loaders, "test_data_noisy", device)
+                masked_test_acc = test(cnn, loaders, "test_data_masked", device)
+                with open(
+                    f"./model_num_layers={num_layers}_num_recurrence={num_recurrence}_num_channels={num_channels}.pkl",
+                    "wb",
+                ) as f:
+                    pickle.dump(
+                        {
+                            "cnn": cnn,
+                            "loss": loss,
+                            "test_acc": test_acc,
+                            "test_noisy_acc": noisy_test_acc,
+                            "test_masked_acc": masked_test_acc,
+                        },
+                        f,
+                    )
 
-for num_layers in range(2, 5):
-    for num_recurrence in range(3):
-        for num_channels in [8, 16, 24]:
-            cnn = CNN(
-                num_layers=num_layers,
-                num_recurrence=num_recurrence,
-                num_channels=num_channels,
-            ).to(device)
-            loaders = get_dataloaders()
-            loss = train(3, cnn, loaders, device)
-            test_acc = test(cnn, loaders, "test", device)
-            noisy_test_acc = test(cnn, loaders, "test_data_noisy", device)
-            masked_test_acc = test(cnn, loaders, "test_data_masked", device)
-            with open(
-                f"./model_num_layers={num_layers}_num_recurrence={num_recurrence}_num_channels={num_channels}.pkl",
-                "wb",
-            ) as f:
-                pickle.dump(
-                    {
-                        "cnn": cnn,
-                        "loss": loss,
-                        "test_acc": test_acc,
-                        "test_noisy_acc": noisy_test_acc,
-                        "test_masked_acc": masked_test_acc,
-                    },
-                    f,
-                )
+if __name__ == "__main__":
+    main()
