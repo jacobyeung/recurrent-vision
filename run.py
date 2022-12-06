@@ -1,5 +1,6 @@
 # Import libraries for convolutional neural network and data processing
 # We will use pytorch to create a convolutional neural network training on MNIST dataset.
+import random
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,6 +16,10 @@ from torch.autograd import Variable
 from basic_CNN import CNN
 
 device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+
+# CIFAR 10 stats
+mean = [0.4914, 0.4822, 0.4465]
+std = [0.2470, 0.2435, 0.2616]
 
 
 class AddGaussianNoise(object):
@@ -68,8 +73,24 @@ def get_dataloaders():
     train_data = datasets.MNIST(
         root="data", train=True, download=True, transform=transforms.ToTensor()
     )
+    train_data = datasets.CIFAR10(
+        root="data",
+        train=True,
+        download=True,
+        transform=transforms.Compose(
+            [transforms.ToTensor(), transforms.Normalize(mean, std)]
+        ),
+    )
     test_data = datasets.MNIST(
         root="data", train=False, download=True, transform=transforms.ToTensor()
+    )
+    test_data = datasets.CIFAR10(
+        root="data",
+        train=False,
+        download=True,
+        transform=transforms.Compose(
+            [transforms.ToTensor(), transforms.Normalize(mean, std)]
+        ),
     )
     test_data_noisy = datasets.MNIST(
         root="data",
@@ -83,11 +104,31 @@ def get_dataloaders():
             ]
         ),
     )
+    test_data_noisy = datasets.CIFAR10(
+        root="data",
+        train=False,
+        download=True,
+        transform=transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize(mean, std),
+                AddGaussianNoise(0.0, 1.0),
+            ]
+        ),
+    )
     test_data_masked = datasets.MNIST(
         root="data",
         train=False,
         download=True,
         transform=transforms.Compose([transforms.ToTensor(), AddMask(0.5, True)]),
+    )
+    test_data_masked = datasets.CIFAR10(
+        root="data",
+        train=False,
+        download=True,
+        transform=transforms.Compose(
+            [transforms.ToTensor(), transforms.Normalize(mean, std), AddMask(0.5, True)]
+        ),
     )
 
     return {
@@ -174,10 +215,14 @@ def test(loaders, label, device):
 for num_layers in range(2, 5):
     for num_recurrence in range(3):
         for num_channels in [8, 16, 24]:
+            seed = 0
+            random.seed(seed)
+            torch.manual_seed(seed)
             cnn = CNN(
                 num_layers=num_layers,
                 num_recurrence=num_recurrence,
                 num_channels=num_channels,
+                dataset="cifar10",
             ).to(device)
             loaders = get_dataloaders()
             loss = train(3, cnn, loaders, device)
@@ -185,7 +230,7 @@ for num_layers in range(2, 5):
             noisy_test_acc = test(loaders, "test_data_noisy", device)
             masked_test_acc = test(loaders, "test_data_masked", device)
             with open(
-                f"./model_num_layers={num_layers}_num_recurrence={num_recurrence}_num_channels={num_channels}.pkl",
+                f"./CIFAR_model_num_layers={num_layers}_num_recurrence={num_recurrence}_num_channels={num_channels}.pkl",
                 "wb",
             ) as f:
                 pickle.dump(

@@ -2,12 +2,18 @@ import torch.nn as nn
 
 
 class CNN(nn.Module):
-    def __init__(self, num_layers, num_recurrence, num_channels, kernel_size=3):
+    def __init__(
+        self, num_layers, num_recurrence, num_channels, kernel_size=3, dataset="mnist"
+    ):
         super(CNN, self).__init__()
         self.num_recurrence = num_recurrence
+        if dataset == "mnist":
+            in_channels = 1
+        elif dataset == "cifar10":
+            in_channels = 3
         self.conv1 = nn.Sequential(
             nn.Conv2d(
-                in_channels=1,
+                in_channels=in_channels,
                 out_channels=num_channels,
                 kernel_size=5,
                 stride=1,
@@ -27,7 +33,7 @@ class CNN(nn.Module):
             * num_layers
         )
         # fully connected layer, output 10 classes
-        self.out = nn.Linear(num_channels * 14 * 14, 10)
+        self.out = nn.Linear(num_channels * 16 * 16, 10)
 
     def forward(self, x):
         x = self.conv1(x)
