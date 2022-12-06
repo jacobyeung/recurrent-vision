@@ -153,7 +153,7 @@ def train(num_epochs, cnn, loaders, device):
     return losses
 
 
-def test(loaders, label, device):
+def test(cnn, loaders, label, device):
     # Test the model
     cnn.eval()
     with torch.no_grad():
@@ -181,9 +181,9 @@ for num_layers in range(2, 5):
             ).to(device)
             loaders = get_dataloaders()
             loss = train(3, cnn, loaders, device)
-            test_acc = test(loaders, "test", device)
-            noisy_test_acc = test(loaders, "test_data_noisy", device)
-            masked_test_acc = test(loaders, "test_data_masked", device)
+            test_acc = test(cnn, loaders, "test", device)
+            noisy_test_acc = test(cnn, loaders, "test_data_noisy", device)
+            masked_test_acc = test(cnn, loaders, "test_data_masked", device)
             with open(
                 f"./model_num_layers={num_layers}_num_recurrence={num_recurrence}_num_channels={num_channels}.pkl",
                 "wb",
