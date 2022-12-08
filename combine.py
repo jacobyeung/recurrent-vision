@@ -17,6 +17,8 @@ for dataset in ["mnist", "cifar10"]:
     test_accs = []
     noisy_test_accs = []
     masked_test_accs = []
+    left_masked_test_accs = []
+    gaussian_blur_test_accs = []
     for num_layers in range(2, 5):
         for num_recurrence in range(3):
             num_channels_dict = {}
@@ -35,6 +37,9 @@ for dataset in ["mnist", "cifar10"]:
                 test_accs.append(data["test_acc"])
                 noisy_test_accs.append(data["test_noisy_acc"])
                 masked_test_accs.append(data["test_masked_acc"])
+                left_masked_test_accs.append(data["test_left_masked_acc"])
+                gaussian_blur_test_accs.append(data["test_gaussian_blur_acc"])
+
             combined[f"num_layers={num_layers}"][
                 f"num_recurrence={num_recurrence}"
             ] = num_channels_dict
@@ -43,12 +48,16 @@ for dataset in ["mnist", "cifar10"]:
     test_accs = np.array(test_accs).reshape(3, 3, 3)
     noisy_test_accs = np.array(noisy_test_accs).reshape(3, 3, 3)
     masked_test_accs = np.array(masked_test_accs).reshape(3, 3, 3)
+    left_masked_test_accs = np.array(left_masked_test_accs).reshape(3, 3, 3)
+    gaussian_blur_test_accs = np.array(gaussian_blur_test_accs).reshape(3, 3, 3)
 
     combined_list = {
         "losses": losses,
         "test_accs": test_accs,
-        "noisy_test_accs": noisy_test_accs,
-        "masked_test_accs": masked_test_accs,
+        "test_noisy_accs": noisy_test_accs,
+        "test_masked_accs": masked_test_accs,
+        "test_left_masked_accs": left_masked_test_accs,
+        "test_gaussian_blur_accs": gaussian_blur_test_accs,
     }
     with open(f"./results/{dataset}_seed={seed}_combined.pkl", "wb") as f:
         pickle.dump(combined, f)

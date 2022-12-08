@@ -322,7 +322,7 @@ def test(loaders, label, device):
 
 
 num_layers = np.arange(2, 5)
-num_recurrences = np.arange(3, 4)
+num_recurrences = np.arange(3)
 num_channels = [8, 16, 24]
 seeds = [0, 10, 100, 1000, 10000, 1000000]
 
@@ -351,7 +351,7 @@ if not os.path.exists(
     f"./models/{dataset}_seed_{seed}_model_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
 ):
     print("model does not exist")
-    loss = train(3, cnn, loaders, device)
+    loss = train(5, cnn, loaders, device)
     test_acc = test(loaders, "test", device)
     noisy_test_acc = test(loaders, "test_data_noisy", device)
     masked_test_acc = test(loaders, "test_data_masked", device)

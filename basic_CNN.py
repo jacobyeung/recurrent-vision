@@ -38,6 +38,7 @@ class CNN(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
+        x = self.conv(x)
         for _ in range(self.num_recurrence):
             x = self.conv(x)
         # flatten the output of conv2 to (batch_size, 32 * 7 * 7)
