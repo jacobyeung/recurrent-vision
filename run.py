@@ -31,12 +31,11 @@ parser.add_argument("--cuda", type=int, help="save directory")
 parser.add_argument("--experiment", type=int, default=0, help="Experiment number")
 parser.add_argument("--dataset", type=str, default="mnist", help="Dataset to use")
 args = parser.parse_args()
-args.cuda = (args.cuda % 8)
+args.cuda = (args.cuda % 7)
 # if args.cuda == 1:
 #     args.cuda == 0
 device = args.cuda
 dataset = args.dataset
-print('dataset')
 # args.experiment=26
 
 
@@ -194,7 +193,7 @@ def get_dataloaders(dataset):
                 ]
             ),
         )
-        test_data_left_masked = datasets.CIFAR10(
+        test_data_left_masked = datasets.MNIST(
             root="data",
             train=False,
             download=True,
@@ -304,7 +303,7 @@ def train(num_epochs, cnn, loaders, device):
     return losses
 
 
-def test(cnn, loaders, label, device):
+def test(loaders, label, device):
     # Test the model
     cnn.eval()
     with torch.no_grad():
@@ -321,77 +320,74 @@ def test(cnn, loaders, label, device):
         print("Test Accuracy of the model on the 10000 test images: %.4f" % accuracy)
         return accuracy
 
-def main():
-    num_layers = np.arange(2, 5)
-    num_recurrences = np.arange(3)
-    num_channels = [8, 16, 24]
-    seeds = [0, 10, 100, 1000, 10000, 1000000]
 
-    params = prepare_configs_loop(num_layers, num_recurrences, num_channels, seeds)
-    print(len(params[0]))
-    print(params)
-    # for num_layers in range(2, 5):
-    #     for num_recurrence in range(3):
-    #         for num_channels in [8, 16, 24]:
-    # settings = [[3, 2, 16],
+num_layers = np.arange(2, 5)
+num_recurrences = np.arange(3)
+num_channels = [8, 16, 24]
+seeds = [0, 10, 100, 1000, 10000, 1000000]
 
-    num_layer, num_recurrence, num_channel, seed = [
-        params[i][args.experiment] for i in range(len(params))
-    ]
-    random.seed(seed)
-    torch.manual_seed(seed)
-    cnn = CNN(
-        num_layers=num_layer,
-        num_recurrence=num_recurrence,
-        num_channels=num_channel,
-        dataset=dataset,
-    ).to(device)
-    loaders = get_dataloaders(dataset)
+params = prepare_configs_loop(num_layers, num_recurrences, num_channels, seeds)
+print(len(params[0]))
+print(params)
+# for num_layers in range(2, 5):
+#     for num_recurrence in range(3):
+#         for num_channels in [8, 16, 24]:
+# settings = [[3, 2, 16],
 
-    if not os.path.exists(
-        f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
-    ):
-        print("model does not exist")
-        loss = train(5, cnn, loaders, device)
-        test_acc = test(loaders, "test", device)
-        noisy_test_acc = test(loaders, "test_data_noisy", device)
-        masked_test_acc = test(loaders, "test_data_masked", device)
-        left_masked_test_acc = test(loaders, "test_data_left_masked", device)
-        gaussian_blur_test_acc = test(loaders, "test_data_gaussian_blur", device)
-        data = {
-            "cnn": cnn,
-            "loss": loss,
-            "test_acc": test_acc,
-            "test_noisy_acc": noisy_test_acc,
-            "test_masked_acc": masked_test_acc,
-            "test_left_masked_acc": left_masked_test_acc,
-            "test_gaussian_blur_acc": gaussian_blur_test_acc,
-        }
-    else:
-        with open(
-            f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
-            "rb",
-        ) as f:
-            data = pickle.load(f)
-        if "test_left_masked_acc" in data.keys():
-            print("model already tested")
-            exit()
-        cnn = data["cnn"].to(device)
-        left_masked_test_acc = test(loaders, "test_data_left_masked", device)
-        gaussian_blur_test_acc = test(loaders, "test_data_gaussian_blur", device)
-        data["test_left_masked_acc"] = left_masked_test_acc
-        # data["test_elastic_acc"] = elastic_test_acc
-        data["test_gaussian_blur_acc"] = gaussian_blur_test_acc
+num_layer, num_recurrence, num_channel, seed = [
+    params[i][args.experiment] for i in range(len(params))
+]
+random.seed(seed)
+torch.manual_seed(seed)
+cnn = CNN(
+    num_layers=num_layer,
+    num_recurrence=num_recurrence,
+    num_channels=num_channel,
+    dataset=dataset,
+).to(device)
+loaders = get_dataloaders(dataset)
 
-
+if not os.path.exists(
+    f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
+):
+    print("model does not exist")
+    loss = train(5, cnn, loaders, device)
+    test_acc = test(loaders, "test", device)
+    noisy_test_acc = test(loaders, "test_data_noisy", device)
+    masked_test_acc = test(loaders, "test_data_masked", device)
+    left_masked_test_acc = test(loaders, "test_data_left_masked", device)
+    gaussian_blur_test_acc = test(loaders, "test_data_gaussian_blur", device)
+    data = {
+        "cnn": cnn,
+        "loss": loss,
+        "test_acc": test_acc,
+        "test_noisy_acc": noisy_test_acc,
+        "test_masked_acc": masked_test_acc,
+        "test_left_masked_acc": left_masked_test_acc,
+        "test_gaussian_blur_acc": gaussian_blur_test_acc,
+    }
+else:
     with open(
         f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
-        "wb",
+        "rb",
     ) as f:
-        pickle.dump(
-            data,
-            f,
-        )
+        data = pickle.load(f)
+    if "test_left_masked_acc" in data.keys():
+        print("model already tested")
+        exit()
+    cnn = data["cnn"].to(device)
+    left_masked_test_acc = test(loaders, "test_data_left_masked", device)
+    gaussian_blur_test_acc = test(loaders, "test_data_gaussian_blur", device)
+    data["test_left_masked_acc"] = left_masked_test_acc
+    # data["test_elastic_acc"] = elastic_test_acc
+    data["test_gaussian_blur_acc"] = gaussian_blur_test_acc
 
-if __name__ == "__main__":
-    main()
+
+with open(
+    f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
+    "wb",
+) as f:
+    pickle.dump(
+        data,
+        f,
+    )
