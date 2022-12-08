@@ -1,11 +1,11 @@
 import torch.nn as nn
 
 
-class indRecurrenceCNN(nn.Module):
+class indRecurrenceCNNBN(nn.Module):
     def __init__(
         self, num_layers, num_recurrence, num_channels, kernel_size=3, dataset="mnist"
     ):
-        super(indRecurrenceCNN, self).__init__()
+        super(indRecurrenceCNNBN, self).__init__()
         self.num_recurrence = num_recurrence
         padding = (kernel_size - 1) // 2
 
