@@ -16,6 +16,7 @@ from torch.utils.data import DataLoader
 import torch.nn as nn
 from torch.autograd import Variable
 from basic_CNN import CNN
+from independent_recurrence_CNN import indRecurrenceCNN as CNN_ind
 
 # device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 # dataset = "cifar10"
@@ -339,7 +340,7 @@ num_layer, num_recurrence, num_channel, seed = [
 ]
 random.seed(seed)
 torch.manual_seed(seed)
-cnn = CNN(
+cnn = CNN_ind(
     num_layers=num_layer,
     num_recurrence=num_recurrence,
     num_channels=num_channel,
@@ -348,7 +349,7 @@ cnn = CNN(
 loaders = get_dataloaders(dataset)
 
 if not os.path.exists(
-    f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
+    f"./models/{dataset}_seed_{seed}_model_ind_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
 ):
     print("model does not exist")
     loss = train(5, cnn, loaders, device)
@@ -368,7 +369,7 @@ if not os.path.exists(
     }
 else:
     with open(
-        f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
+        f"./models/{dataset}_seed_{seed}_model_ind_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
         "rb",
     ) as f:
         data = pickle.load(f)
@@ -384,7 +385,7 @@ else:
 
 
 with open(
-    f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
+    f"./models/{dataset}_seed_{seed}_model_ind_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
     "wb",
 ) as f:
     pickle.dump(
