@@ -35,6 +35,7 @@ class indRecurrenceCNN(nn.Module):
         )
         
         self.conv = nn.Sequential(
+            nn.BatchNorm2d(num_channels),
             *[
                 nn.Sequential(
                     nn.Conv2d(num_channels, num_channels, kernel_size, 1, padding),
