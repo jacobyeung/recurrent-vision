@@ -9,9 +9,9 @@ parser = argparse.ArgumentParser(description="Fit different DCAs.")
 parser.add_argument("--experiment", type=int, default=0, help="Experiment number")
 args = parser.parse_args()
 
-seeds = [10, 100, 1000, 10000, 1000000]
+seeds = [0, 10, 100, 1000, 10000, 1000000]
 seed = seeds[args.experiment]
-for dataset in ["mnist", "cifar10"]:
+for dataset in ["mnist"]:
     combined = defaultdict(dict)
     losses = []
     test_accs = []
@@ -59,6 +59,7 @@ for dataset in ["mnist", "cifar10"]:
         "test_left_masked_accs": left_masked_test_accs,
         "test_gaussian_blur_accs": gaussian_blur_test_accs,
     }
+    print(combined_list.keys())
     with open(f"./results/{dataset}_seed={seed}_combined.pkl", "wb") as f:
         pickle.dump(combined, f)
 
