@@ -11,7 +11,7 @@ args = parser.parse_args()
 
 seeds = [0, 10, 100, 1000, 10000, 1000000]
 seed = seeds[args.experiment]
-for dataset in ["mnist"]:
+for dataset in ["cifar10"]:
     combined = defaultdict(dict)
     losses = []
     test_accs = []
