@@ -9,8 +9,10 @@ class CNN(nn.Module):
         self.num_recurrence = num_recurrence
         if dataset == "mnist":
             in_channels = 1
+            self.out = nn.Linear(num_channels * 14 * 14, 10)
         elif dataset == "cifar10":
             in_channels = 3
+            self.out = nn.Linear(num_channels * 16 * 16, 10)
         self.conv1 = nn.Sequential(
             nn.Conv2d(
                 in_channels=in_channels,
@@ -33,7 +35,6 @@ class CNN(nn.Module):
             * num_layers
         )
         # fully connected layer, output 10 classes
-        self.out = nn.Linear(num_channels * 16 * 16, 10)
 
     def forward(self, x):
         x = self.conv1(x)
