@@ -1,1 +1,1 @@
-parallel -j 14 "CUBLAS_WORKSPACE_CONFIG=:4096:8 python -u run.py --cuda {} --experiment {} > hi.out" ::: {0..27}
+parallel -j 14 "CUBLAS_WORKSPACE_CONFIG=:4096:8 python -u run.py --dataset mnist --cuda {} --experiment {} > hi.out" ::: {0..161}

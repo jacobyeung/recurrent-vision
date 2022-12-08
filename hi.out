@@ -1,55 +1,20 @@
-mnist_seed_1000_num_layers=2, num_recurrence=0, num_channels=8, test_acc=0.9807, test_noisy_acc=0.2549, test_masked_acc=0.617mnmmnist_seed_10000_num_layers=2, num_recurrence=0, num_channels=16, test_acc=0.9833, test_noisy_acc=0.3909, test_masked_acc=0mnist_seed_10_num_layers=2, num_recurrence=0, num_channels=24, test_acc=0.9837, test_noisy_acc=0.557, test_masked_acc=0.6244
-mnist_seed_10_num_layers=2, num_recurrence=1, num_channels=8, test_acc=0.9817, test_noisy_acc=0.8793, test_masked_acc=0.5707
-mnist_seed_10_num_layers=2, num_recurrence=1, num_channels=16, test_acc=0.9847, test_noisy_acc=0.9531, test_masked_acc=0.5545
-mnist_seed_10_num_layers=2, num_recurrence=1, num_channels=24, test_acc=0.9873, test_noisy_acc=0.9011, test_masked_acc=0.6085
-mnist_seed_10_num_layers=2, num_recurrence=2, num_channels=8, test_acc=0.9735, test_noisy_acc=0.8776, test_masked_acc=0.5166
-mnist_seed_10_num_layers=2, num_recurrence=2, num_channels=16, test_acc=0.9767, test_noisy_acc=0.718, test_masked_acc=0.5096
-mnist_seed_10_num_layers=2, num_recurrence=2, num_channels=24, test_acc=0.9716, test_noisy_acc=0.5728, test_masked_acc=0.495
-mnist_seed_10_num_layers=3, num_recurrence=0, num_channels=8, test_acc=0.9746, test_noisy_acc=0.4163, test_masked_acc=0.5067
-mnist_seed_10_num_layers=3, num_recurrence=0, num_channels=16, test_acc=0.9844, test_noisy_acc=0.4053, test_masked_acc=0.5908
-mnist_seed_10_num_layers=3, num_recurrence=0, num_channels=24, test_acc=0.984, test_noisy_acc=0.5329, test_masked_acc=0.6257
-mnist_seed_10_num_layers=3, num_recurrence=1, num_channels=8, test_acc=0.9772, test_noisy_acc=0.8733, test_masked_acc=0.4496
-mnist_seed_10_num_layers=3, num_recurrence=1, num_channels=16, test_acc=0.9857, test_noisy_acc=0.8503, test_masked_acc=0.5304
-mnist_seed_10_num_layers=3, num_recurrence=1, num_channels=24, test_acc=0.9868, test_noisy_acc=0.9157, test_masked_acc=0.5504
-mnist_seed_10_num_layers=3, num_recurrence=2, num_channels=8, test_acc=0.9678, test_noisy_acc=0.1215, test_masked_acc=0.4119
-mnist_seed_10_num_layers=3, num_recurrence=2, num_channels=16, test_acc=0.9754, test_noisy_acc=0.2476, test_masked_acc=0.4455
-mnist_seed_10_num_layers=3, num_recurrence=2, num_channels=24, test_acc=0.9741, test_noisy_acc=0.2347, test_masked_acc=0.506
-mnist_seed_10_num_layers=4, num_recurrence=0, num_channels=8, test_acc=0.9746, test_noisy_acc=0.4167, test_masked_acc=0.5068
-mnist_seed_10_num_layers=4, num_recurrence=0, num_channels=16, test_acc=0.9843, test_noisy_acc=0.4081, test_masked_acc=0.591
-mnist_seed_10_num_layers=4, num_recurrence=0, num_channels=24, test_acc=0.984, test_noisy_acc=0.537, test_masked_acc=0.6258
-mnist_seed_10_num_layers=4, num_recurrence=1, num_channels=8, test_acc=0.968, test_noisy_acc=0.8567, test_masked_acc=0.5059
-mnist_seed_10_num_layers=4, num_recurrence=1, num_channels=16, test_acc=0.9801, test_noisy_acc=0.6909, test_masked_acc=0.5013
-mnist_seed_10_num_layers=4, num_recurrence=1, num_channels=24, test_acc=0.9733, test_noisy_acc=0.578, test_masked_acc=0.4944
-mnist_seed_10_num_layers=4, num_recurrence=2, num_channels=8, test_acc=0.9565, test_noisy_acc=0.3991, test_masked_acc=0.4757
-mnist_seed_10_num_layers=4, num_recurrence=2, num_channels=16, test_acc=0.968, test_noisy_acc=0.4045, test_masked_acc=0.4059
-mnist_seed_10_num_layers=4, num_recurrence=2, num_channels=24, test_acc=0.1135, test_noisy_acc=0.1135, test_masked_acc=0.1135
-cifar10_seed_10_num_layers=2, num_recurrence=0, num_channels=8, test_acc=0.5697, test_noisy_acc=0.1999, test_masked_acc=0.4657
-cifar10_seed_10_num_layers=2, num_recurrence=0, num_channels=16, test_acc=0.5961, test_noisy_acc=0.2069, test_masked_acc=0.4662
-cifar10_seed_10_num_layers=2, num_recurrence=0, num_channels=24, test_acc=0.6186, test_noisy_acc=0.1512, test_masked_acc=0.5002
-cifar10_seed_10_num_layers=2, num_recurrence=1, num_channels=8, test_acc=0.5445, test_noisy_acc=0.3424, test_masked_acc=0.3765
-cifar10_seed_10_num_layers=2, num_recurrence=1, num_channels=16, test_acc=0.4931, test_noisy_acc=0.3275, test_masked_acc=0.3618
-cifar10_seed_10_num_layers=2, num_recurrence=1, num_channels=24, test_acc=0.5138, test_noisy_acc=0.3893, test_masked_acc=0.3957
-cifar10_seed_10_num_layers=2, num_recurrence=2, num_channels=8, test_acc=0.5247, test_noisy_acc=0.3572, test_masked_acc=0.3975
-cifar10_seed_10_num_layers=2, num_recurrence=2, num_channels=16, test_acc=0.5136, test_noisy_acc=0.3897, test_masked_acc=0.3861
-cifar10_seed_10_num_layers=2, num_recurrence=2, num_channels=24, test_acc=0.4385, test_noisy_acc=0.321, test_masked_acc=0.3346
-cifar10_seed_10_num_layers=3, num_recurrence=0, num_channels=8, test_acc=0.5833, test_noisy_acc=0.2071, test_masked_acc=0.4727
-cifar10_seed_10_num_layers=3, num_recurrence=0, num_channels=16, test_acc=0.5961, test_noisy_acc=0.2069, test_masked_acc=0.4662
-cifar10_seed_10_num_layers=3, num_recurrence=0, num_channels=24, test_acc=0.6186, test_noisy_acc=0.1512, test_masked_acc=0.5002
-cifar10_seed_10_num_layers=3, num_recurrence=1, num_channels=8, test_acc=0.5214, test_noisy_acc=0.3591, test_masked_acc=0.3241
-cifar10_seed_10_num_layers=3, num_recurrence=1, num_channels=16, test_acc=0.4749, test_noisy_acc=0.3564, test_masked_acc=0.3796
-cifar10_seed_10_num_layers=3, num_recurrence=1, num_channels=24, test_acc=0.4758, test_noisy_acc=0.3291, test_masked_acc=0.3599
-cifar10_seed_10_num_layers=3, num_recurrence=2, num_channels=8, test_acc=0.5028, test_noisy_acc=0.3951, test_masked_acc=0.396
-cifar10_seed_10_num_layers=3, num_recurrence=2, num_channels=16, test_acc=0.1, test_noisy_acc=0.1, test_masked_acc=0.1
-cifar10_seed_10_num_layers=3, num_recurrence=2, num_channels=24, test_acc=0.3377, test_noisy_acc=0.3131, test_masked_acc=0.2713
-cifar10_seed_10_num_layers=4, num_recurrence=0, num_channels=8, test_acc=0.5682, test_noisy_acc=0.2116, test_masked_acc=0.4628
-cifar10_seed_10_num_layers=4, num_recurrence=0, num_channels=16, test_acc=0.5961, test_noisy_acc=0.2069, test_masked_acc=0.4662
-cifar10_seed_10_num_layers=4, num_recurrence=0, num_channels=24, test_acc=0.6186, test_noisy_acc=0.1512, test_masked_acc=0.5002
-cifar10_seed_10_num_layers=4, num_recurrence=1, num_channels=8, test_acc=0.5234, test_noisy_acc=0.3441, test_masked_acc=0.3994
-cifar10_seed_10_num_layers=4, num_recurrence=1, num_channels=16, test_acc=0.5115, test_noisy_acc=0.3675, test_masked_acc=0.3823
-cifar10_seed_10_num_layers=4, num_recurrence=1, num_channels=24, test_acc=0.4523, test_noisy_acc=0.3194, test_masked_acc=0.3527
-cifar10_seed_10_num_layers=4, num_recurrence=2, num_channels=8, test_acc=0.4175, test_noisy_acc=0.3697, test_masked_acc=0.3291
-cifar10_seed_10_num_layers=4, num_recurrence=2, num_channels=16, test_acc=0.1, test_noisy_acc=0.1, test_masked_acc=0.1
-cifar10_seed_10_num_layers=4, num_recurrence=2, num_channels=24, test_acc=0.1, test_noisy_acc=0.1, test_masked_acc=0.1
-8, test_noisy_acc=0.2655, test_masked_acc=0.262
-cifar10_seed_10000_num_layers=4, num_recurrence=2, num_channels=24, test_acc=0.1, test_noisy_acc=0.1, test_masked_acc=0.1
-ecurrence=2, num_channels=24, test_acc=0.1, test_noisy_acc=0.1, test_masked_acc=0.1
+54
+[array([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4,
+       4, 4, 4, 4, 4, 4, 4, 4, 4, 4]), array([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3]), array([ 8,  8,  8,  8,  8,  8, 16, 16, 16, 16, 16, 16, 24, 24, 24, 24, 24,
+       24,  8,  8,  8,  8,  8,  8, 16, 16, 16, 16, 16, 16, 24, 24, 24, 24,
+       24, 24,  8,  8,  8,  8,  8,  8, 16, 16, 16, 16, 16, 16, 24, 24, 24,
+       24, 24, 24]), array([      0,      10,     100,    1000,   10000, 1000000,       0,
+            10,     100,    1000,   10000, 1000000,       0,      10,
+           100,    1000,   10000, 1000000,       0,      10,     100,
+          1000,   10000, 1000000,       0,      10,     100,    1000,
+         10000, 1000000,       0,      10,     100,    1000,   10000,
+       1000000,       0,      10,     100,    1000,   10000, 1000000,
+             0,      10,     100,    1000,   10000, 1000000,       0,
+            10,     100,    1000,   10000, 1000000])]
+model does not exist
+Epoch [1/3], Step [100/118], Loss: 0.3972
+Epoch [2/3], Step [100/118], Loss: 0.0896
+Epoch [3/3], Step [100/118], Loss: 0.0603
