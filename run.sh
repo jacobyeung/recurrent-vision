@@ -1,1 +1,1 @@
-parallel -j 16 "CUBLAS_WORKSPACE_CONFIG=:4096:8 python -u run.py --dataset cifar10 --cuda {} --experiment {} > hi.out" ::: {0..161}
+parallel -j 16 "CUBLAS_WORKSPACE_CONFIG=:4096:8 python -u run_nian.py --dataset cifar10 --cuda {} --experiment {} > hi.out" ::: {0..161}
