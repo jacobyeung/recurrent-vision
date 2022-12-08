@@ -194,7 +194,7 @@ def get_dataloaders(dataset):
                 ]
             ),
         )
-        test_data_left_masked = datasets.MNIST(
+        test_data_left_masked = datasets.CIFAR10(
             root="data",
             train=False,
             download=True,
