@@ -26,6 +26,7 @@ class CNN(nn.Module):
         )
         padding = (kernel_size - 1) // 2
         self.conv = nn.Sequential(
+            nn.BatchNorm2d(num_channels),
             *[
                 nn.Sequential(
                     nn.Conv2d(num_channels, num_channels, kernel_size, 1, padding),
@@ -37,11 +38,15 @@ class CNN(nn.Module):
         # fully connected layer, output 10 classes
 
     def forward(self, x):
+        xs = []
         x = self.conv1(x)
         x = self.conv(x)
+        xs.append(x)
         for _ in range(self.num_recurrence):
-            x = self.conv(x)
+            xnew = self.conv(xs[-1])
+            xs.append(xnew+xs[-1])
         # flatten the output of conv2 to (batch_size, 32 * 7 * 7)
-        x = x.view(x.size(0), -1)
-        output = self.out(x)
+
+        xs[-1] = xs[-1].view(xs[-1].size(0), -1)
+        output = self.out(xs[-1])
         return output, x  # return x for visualization

@@ -1,20 +1,22 @@
-54
-[array([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3,
-       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4,
-       4, 4, 4, 4, 4, 4, 4, 4, 4, 4]), array([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-       3, 3, 3, 3, 3, 3, 3, 3, 3, 3]), array([ 8,  8,  8,  8,  8,  8, 16, 16, 16, 16, 16, 16, 24, 24, 24, 24, 24,
-       24,  8,  8,  8,  8,  8,  8, 16, 16, 16, 16, 16, 16, 24, 24, 24, 24,
-       24, 24,  8,  8,  8,  8,  8,  8, 16, 16, 16, 16, 16, 16, 24, 24, 24,
-       24, 24, 24]), array([      0,      10,     100,    1000,   10000, 1000000,       0,
-            10,     100,    1000,   10000, 1000000,       0,      10,
-           100,    1000,   10000, 1000000,       0,      10,     100,
-          1000,   10000, 1000000,       0,      10,     100,    1000,
-         10000, 1000000,       0,      10,     100,    1000,   10000,
-       1000000,       0,      10,     100,    1000,   10000, 1000000,
-             0,      10,     100,    1000,   10000, 1000000,       0,
-            10,     100,    1000,   10000, 1000000])]
-model does not exist
-Epoch [1/3], Step [100/118], Loss: 0.3972
-Epoch [2/3], Step [100/118], Loss: 0.0896
-Epoch [3/3], Step [100/118], Loss: 0.0603
+mnist_seed_1000_num_layers=2, num_recurrence=0, num_channels=8, test_acc=0.9868, test_noisy_acc=0.086, test_masked_acc=0.56mmnmnist_seed_1000_num_layers=2, num_recurrence=0, num_channels=16, test_acc=0.9842, test_noisy_acc=0.2349, test_masked_acc=0mnmnismnist_seed_1000_num_layers=2, num_recurrence=0, num_channels=24, test_acc=0.9871, test_noisy_acc=0.1299, test_masked_acmnimnist_mnist_seed_1000_num_layers=2, num_recurrence=1, num_channels=8, test_acc=0.9564, test_noisy_acc=0.6048, test_maskedmnimnist_seemnismnist_seed_10000_num_layers=2, num_recurrence=1, num_channels=16, test_acc=0.8545, test_noisy_acc=0.5764, tmnist_mnist_seed_mnistmnist_seed_10000_num_layers=2, num_recurrence=1, num_channels=24, test_acc=0.8785, test_noisy_acc=0.305mnist_seed_0_num_laymnist_mnist_seed_10000_num_layers=2, num_recurrence=2, num_channels=8, test_acc=0.9479, test_noisy_acc=0.8911, test_masked_acc=0.5466
+mnist_seed_10000_num_layers=2, num_recurrence=2, num_channels=16, test_acc=0.8374, test_noisy_acc=0.4772, test_masked_acc=0.459
+mnist_seed_10000_num_layers=2, num_recurrence=2, num_channels=24, test_acc=0.9029, test_noisy_acc=0.1651, test_masked_acc=0.4041
+mnist_seed_10000_num_layers=3, num_recurrence=0, num_channels=8, test_acc=0.9863, test_noisy_acc=0.766, test_masked_acc=0.5472
+mnist_seed_10000_num_layers=3, num_recurrence=0, num_channels=16, test_acc=0.9858, test_noisy_acc=0.5549, test_masked_acc=0.5303
+mnist_seed_10000_num_layers=3, num_recurrence=0, num_channels=24, test_acc=0.9867, test_noisy_acc=0.1078, test_masked_acc=0.5446
+mnist_seed_10000_num_layers=3, num_recurrence=1, num_channels=8, test_acc=0.9601, test_noisy_acc=0.6218, test_masked_acc=0.4049
+mnist_seed_10000_num_layers=3, num_recurrence=1, num_channels=16, test_acc=0.9511, test_noisy_acc=0.8325, test_masked_acc=0.5021
+mnist_seed_10000_num_layers=3, num_recurrence=1, num_channels=24, test_acc=0.8223, test_noisy_acc=0.1096, test_masked_acc=0.3349
+mnist_seed_10000_num_layers=3, num_recurrence=2, num_channels=8, test_acc=0.8979, test_noisy_acc=0.8334, test_masked_acc=0.4771
+mnist_seed_10000_num_layers=3, num_recurrence=2, num_channels=16, test_acc=0.9054, test_noisy_acc=0.3289, test_masked_acc=0.4483
+mnist_seed_10000_num_layers=3, num_recurrence=2, num_channels=24, test_acc=0.6455, test_noisy_acc=0.1795, test_masked_acc=0.2669
+mnist_seed_10000_num_layers=4, num_recurrence=0, num_channels=8, test_acc=0.986, test_noisy_acc=0.6637, test_masked_acc=0.5052
+mnist_seed_10000_num_layers=4, num_recurrence=0, num_channels=16, test_acc=0.9867, test_noisy_acc=0.758, test_masked_acc=0.5248
+mnist_seed_10000_num_layers=4, num_recurrence=0, num_channels=24, test_acc=0.9834, test_noisy_acc=0.1429, test_masked_acc=0.5411
+mnist_seed_10000_num_layers=4, num_recurrence=1, num_channels=8, test_acc=0.947, test_noisy_acc=0.8732, test_masked_acc=0.4702
+mnist_seed_10000_num_layers=4, num_recurrence=1, num_channels=16, test_acc=0.934, test_noisy_acc=0.6156, test_masked_acc=0.3642
+mnist_seed_10000_num_layers=4, num_recurrence=1, num_channels=24, test_acc=0.9686, test_noisy_acc=0.3817, test_masked_acc=0.4997
+mnist_seed_10000_num_layers=4, num_recurrence=2, num_channels=8, test_acc=0.9706, test_noisy_acc=0.808, test_masked_acc=0.5356
+mnist_seed_10000_num_layers=4, num_recurrence=2, num_channels=16, test_acc=0.7977, test_noisy_acc=0.2894, test_masked_acc=0.3668
+mnist_seed_10000_num_layers=4, num_recurrence=2, num_channels=24, test_acc=0.9082, test_noisy_acc=0.3178, test_masked_acc=0.3646
+dict_keys(['losses', 'test_accs', 'test_noisy_accs', 'test_masked_accs', 'test_left_masked_accs', 'test_gaussian_blur_accs'])

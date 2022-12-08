@@ -348,7 +348,7 @@ cnn = CNN(
 loaders = get_dataloaders(dataset)
 
 if not os.path.exists(
-    f"./models/{dataset}_seed_{seed}_model_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
+    f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl"
 ):
     print("model does not exist")
     loss = train(5, cnn, loaders, device)
@@ -368,7 +368,7 @@ if not os.path.exists(
     }
 else:
     with open(
-        f"./models/{dataset}_seed_{seed}_model_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
+        f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
         "rb",
     ) as f:
         data = pickle.load(f)
@@ -384,7 +384,7 @@ else:
 
 
 with open(
-    f"./models/{dataset}_seed_{seed}_model_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
+    f"./models/{dataset}_seed_{seed}_model_bn_num_layers={num_layer}_num_recurrence={num_recurrence}_num_channels={num_channel}.pkl",
     "wb",
 ) as f:
     pickle.dump(
