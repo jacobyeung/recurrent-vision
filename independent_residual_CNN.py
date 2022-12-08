@@ -9,12 +9,12 @@ class indRecurrenceCNN(nn.Module):
         self.num_recurrence = num_recurrence
         padding = (kernel_size - 1) // 2
 
-        self.conv_ind = [
+        self.conv_ind = nn.ModuleList([
             nn.Sequential(
                 nn.Conv2d(num_channels, num_channels, kernel_size, 1, padding),
                 nn.ReLU(),
             )
-        ] * num_recurrence
+        ] * num_recurrence)
 
         if dataset == "mnist":
             in_channels = 1
