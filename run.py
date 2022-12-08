@@ -31,11 +31,12 @@ parser.add_argument("--cuda", type=int, help="save directory")
 parser.add_argument("--experiment", type=int, default=0, help="Experiment number")
 parser.add_argument("--dataset", type=str, default="mnist", help="Dataset to use")
 args = parser.parse_args()
-args.cuda = (args.cuda % 7)
+args.cuda = (args.cuda % 8)
 # if args.cuda == 1:
 #     args.cuda == 0
 device = args.cuda
 dataset = args.dataset
+print('dataset')
 # args.experiment=26
 
 
@@ -193,7 +194,7 @@ def get_dataloaders(dataset):
                 ]
             ),
         )
-        test_data_left_masked = datasets.MNIST(
+        test_data_left_masked = datasets.CIFAR10(
             root="data",
             train=False,
             download=True,
