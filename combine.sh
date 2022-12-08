@@ -1,0 +1,1 @@
+parallel -j 5 "CUBLAS_WORKSPACE_CONFIG=:4096:8 python -u combine.py  --experiment {} > hi.out" ::: {0..4}
