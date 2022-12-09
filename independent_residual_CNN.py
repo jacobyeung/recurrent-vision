@@ -54,7 +54,6 @@ class indRecurrenceCNNBN(nn.Module):
         for i in range(self.num_recurrence):
             xnew = self.conv_ind[i](xs[-1])
             xnew = self.conv(xnew)
-            xnew = self.conv(xnew)
             xs.append(xnew+xs[-1])
         # flatten the output of conv2 to (batch_size, 32 * 7 * 7)
         xs[-1] = xs[-1].view(xs[-1].size(0), -1)
